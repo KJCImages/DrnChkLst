@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drone Pilot Daily Checklist</title>
-  <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#007bff" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="https://i.imgur.com/W0v3UaF.png" />
+  <title>Drone Pilot Daily Checklist</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,13 +18,16 @@
       max-width: 600px;
       margin: auto;
     }
+
     h1, h2, h3 {
       text-align: center;
       color: #2c3e50;
     }
+
     .section {
       margin-bottom: 2rem;
     }
+
     label {
       display: block;
       padding: 0.5rem;
@@ -31,15 +36,18 @@
       margin-bottom: 0.5rem;
       border-radius: 5px;
     }
+
     input[type="checkbox"] {
       margin-right: 0.5rem;
     }
+
     .logo {
       display: block;
       max-width: 100%;
       height: auto;
       margin: 0 auto 1rem auto;
     }
+
     #success-message {
       display: none;
       background-color: #d4edda;
@@ -51,6 +59,7 @@
       font-size: 1.2rem;
       margin-top: 2rem;
     }
+
     .reset-button {
       display: block;
       margin: 2rem auto;
@@ -62,6 +71,7 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     .reset-button:hover {
       background-color: #0056b3;
     }
@@ -230,13 +240,19 @@
     }
 
     checkboxes.forEach(cb => cb.addEventListener('change', checkCompletion));
+
     window.addEventListener('load', () => {
       restoreState();
       checkCompletion();
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js');
-      }
     });
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('✅ Service Worker Registered'))
+          .catch(err => console.error('❌ Service Worker Error:', err));
+      });
+    }
   </script>
 </body>
 </html>
