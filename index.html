@@ -5,27 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Drone Pilot Daily Checklist</title>
   <style>
-    :root {
-      --primary-color: #3e3f89;
-      --accent-color: #e37222;
-      --background-color: #f9f9fb;
-      --card-bg: #ffffff;
-      --border-color: #ccc;
-      --text-color: #2c2c2c;
-    }
-
     body {
       font-family: Arial, sans-serif;
       padding: 1rem;
-      background-color: var(--background-color);
-      color: var(--text-color);
+      background-color: #f2f2f2;
+      color: #333;
       max-width: 600px;
       margin: auto;
     }
 
     h1, h2, h3 {
       text-align: center;
-      color: var(--primary-color);
+      color: #2c3e50;
     }
 
     .section {
@@ -35,20 +26,14 @@
     label {
       display: block;
       padding: 0.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
+      background: #fff;
+      border: 1px solid #ddd;
       margin-bottom: 0.5rem;
       border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    label:hover {
-      background-color: #f0f0f8;
     }
 
     input[type="checkbox"] {
       margin-right: 0.5rem;
-      accent-color: var(--accent-color);
     }
 
     .logo {
@@ -60,11 +45,11 @@
 
     #success-message {
       display: none;
-      background-color: #e6f9ed;
-      color: #206a42;
+      background-color: #d4edda;
+      color: #155724;
       padding: 1rem;
       text-align: center;
-      border: 1px solid #c4e5d2;
+      border: 1px solid #c3e6cb;
       border-radius: 8px;
       font-size: 1.2rem;
       margin-top: 2rem;
@@ -75,16 +60,15 @@
       margin: 2rem auto;
       padding: 0.5rem 1rem;
       font-size: 1rem;
-      background-color: var(--primary-color);
+      background-color: #007bff;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
 
     .reset-button:hover {
-      background-color: #2c2e6a;
+      background-color: #0056b3;
     }
   </style>
 </head>
@@ -92,7 +76,157 @@
   <img src="https://i.imgur.com/W0v3UaF.png" alt="KJC Images Logo" class="logo">
   <h1>Drone Pilot Daily Checklist</h1>
 
-  <!-- rest of the page stays the same -->
+  <div class="section">
+    <h2>Night Before</h2>
+    <label><input type="checkbox" />Check for firmware updates</label>
+    <label><input type="checkbox" />Charge drone batteries and controller</label>
+    <label><input type="checkbox" />Format SD cards</label>
+    <label><input type="checkbox" />Confirm weather and airspace</label>
+    <label><input type="checkbox" />Pre-file LAANC if needed</label>
+  </div>
 
+  <div class="section">
+    <h2>-= Select Job Types =-</h2>
+    <label><input type="checkbox" onchange="toggleItems('photos')" />Photos</label>
+    <label><input type="checkbox" onchange="toggleItems('videos')" />Videos</label>
+    <label><input type="checkbox" onchange="toggleItems('drone')" />Drone</label>
+    <label><input type="checkbox" onchange="toggleItems('walkthrough')" />3D Walkthrough</label>
+    <label><input type="checkbox" onchange="toggleItems('luxury')" />Luxury with Detail</label>
+
+    <h3>-= Required Equipment =-</h3>
+    <div id="photos-items" style="display:none">
+      <label><input type="checkbox" />Camera</label>
+      <label><input type="checkbox" />Tripod</label>
+      <label><input type="checkbox" />Lenses</label>
+      <label><input type="checkbox" />Cleaning Supplies</label>
+      <label><input type="checkbox" />Batteries</label>
+      <label><input type="checkbox" />SD Cards</label>
+    </div>
+    <div id="videos-items" style="display:none">
+      <label><input type="checkbox" />Camera Gimbal</label>
+      <label><input type="checkbox" />Phone Gimbal</label>
+      <label><input type="checkbox" />Microphones</label>
+    </div>
+    <div id="drone-items" style="display:none">
+      <label><input type="checkbox" />Drone</label>
+      <label><input type="checkbox" />Batteries</label>
+      <label><input type="checkbox" />SD Cards</label>
+      <label><input type="checkbox" />License</label>
+    </div>
+    <div id="walkthrough-items" style="display:none">
+      <label><input type="checkbox" />3D Camera</label>
+      <label><input type="checkbox" />Tripod</label>
+      <label><input type="checkbox" />Spare Batteries for 3D Camera</label>
+      <label><input type="checkbox" />Remote Powerbank</label>
+    </div>
+    <div id="luxury-items" style="display:none">
+      <label><input type="checkbox" />Prime Lenses</label>
+      <label><input type="checkbox" />CPL/Filters</label>
+      <label><input type="checkbox" />Portable LED</label>
+    </div>
+  </div>
+
+  <div class="section" id="pre-flight">
+    <h2>Pre-Flight</h2>
+    <label><input type="checkbox" />Survey site and identify obstacles</label>
+    <label><input type="checkbox" />Locate emergency landing spots</label>
+    <label><input type="checkbox" />Introduce yourself to homeowner/agent</label>
+    <label><input type="checkbox" />Setup landing pad and cones</label>
+    <label><input type="checkbox" />Power on and confirm signal/GPS</label>
+    <label><input type="checkbox" />Inspect drone (props, camera, battery)</label>
+  </div>
+
+  <div class="section" id="in-flight">
+    <h2>In-Flight</h2>
+    <label><input type="checkbox" />Announce takeoff</label>
+    <label><input type="checkbox" />Check RTH altitude</label>
+    <label><input type="checkbox" />Capture cinematic paths and stills</label>
+    <label><input type="checkbox" />Monitor battery and safety</label>
+    <label><input type="checkbox" />Land safely</label>
+  </div>
+
+  <div class="section" id="post-flight">
+    <h2>Post-Flight</h2>
+    <label><input type="checkbox" />Inspect drone for wear/damage</label>
+    <label><input type="checkbox" />Review media</label>
+    <label><input type="checkbox" />Swap batteries</label>
+    <label><input type="checkbox" />Use fire-safe lipo bags</label>
+    <label><input type="checkbox" />Protect gear from heat/sun</label>
+  </div>
+
+  <button class="reset-button" onclick="resetFlightChecklist()">Reset for Additional Flight?</button>
+
+  <div class="section">
+    <h2>End of Day</h2>
+    <label><input type="checkbox" />Transfer and back up files</label>
+    <label><input type="checkbox" />Charge all batteries</label>
+    <label><input type="checkbox" />Clean and store all gear</label>
+    <label><input type="checkbox" />Review tomorrow’s schedule</label>
+  </div>
+
+  <div id="success-message">✅ Congratulations, Pilot! You’ve completed the full checklist. Well-earned rest awaits. 🎉</div>
+  <button class="reset-button" onclick="confirmFullReset()">Reset Entire Checklist</button>
+
+  <audio id="success-sound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const successMessage = document.getElementById('success-message');
+    const successSound = document.getElementById('success-sound');
+    let confettiFired = false;
+
+    function checkCompletion() {
+      const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+      if (allChecked && !confettiFired) {
+        successMessage.style.display = 'block';
+        successSound.play();
+        confetti();
+        confettiFired = true;
+      } else if (!allChecked) {
+        successMessage.style.display = 'none';
+        confettiFired = false;
+      }
+    }
+
+    function confetti() {
+      window.confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function resetChecklist() {
+      checkboxes.forEach(cb => cb.checked = false);
+      successMessage.style.display = 'none';
+      confettiFired = false;
+    }
+
+    function resetFlightChecklist() {
+      if (confirm("Are you sure you want to reset the flight-related sections?")) {
+        const flightSections = ['pre-flight', 'in-flight', 'post-flight'];
+        flightSections.forEach(sectionId => {
+          const section = document.getElementById(sectionId);
+          const sectionCheckboxes = section.querySelectorAll('input[type="checkbox"]');
+          sectionCheckboxes.forEach(cb => cb.checked = false);
+        });
+        successMessage.style.display = 'none';
+        confettiFired = false;
+      }
+    }
+
+    function confirmFullReset() {
+      if (confirm("Are you sure you want to reset the entire checklist?")) {
+        resetChecklist();
+      }
+    }
+
+    function toggleItems(group) {
+      const element = document.getElementById(`${group}-items`);
+      element.style.display = element.style.display === 'none' ? 'block' : 'none';
+    }
+
+    checkboxes.forEach(cb => cb.addEventListener('change', checkCompletion));
+  </script>
 </body>
 </html>
