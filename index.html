@@ -13,7 +13,7 @@
       max-width: 600px;
       margin: auto;
     }
-    h1, h2 {
+    h1, h2, h3 {
       text-align: center;
       color: #2c3e50;
     }
@@ -76,14 +76,44 @@
 
   <div class="section">
     <h2>Morning Prep and Pack</h2>
-    <label><input type="checkbox" />Camera(s)</label>
-    <label><input type="checkbox" />Tripod(s)</label>
-    <label><input type="checkbox" />Drone</label>
-    <label><input type="checkbox" />Charged Batteries</label>
-    <label><input type="checkbox" />SD Cards</label>
-    <label><input type="checkbox" />Power Bank</label>
-    <label><input type="checkbox" />Cleaning Supplies</label>
-    <label><input type="checkbox" />License and ID</label>
+    <h3>-= Select Job Types =-</h3>
+    <label><input type="checkbox" onchange="toggleItems('photos')" />Photos</label>
+    <label><input type="checkbox" onchange="toggleItems('videos')" />Videos</label>
+    <label><input type="checkbox" onchange="toggleItems('drone')" />Drone</label>
+    <label><input type="checkbox" onchange="toggleItems('walkthrough')" />3D Walkthrough</label>
+    <label><input type="checkbox" onchange="toggleItems('luxury')" />Luxury with Detail</label>
+
+    <h3>-= Required Equipment =-</h3>
+    <div id="photos-items" style="display:none">
+      <label><input type="checkbox" />Camera</label>
+      <label><input type="checkbox" />Tripod</label>
+      <label><input type="checkbox" />Lenses</label>
+      <label><input type="checkbox" />Cleaning Supplies</label>
+      <label><input type="checkbox" />Batteries</label>
+      <label><input type="checkbox" />SD Cards</label>
+    </div>
+    <div id="videos-items" style="display:none">
+      <label><input type="checkbox" />Camera Gimbal</label>
+      <label><input type="checkbox" />Phone Gimbal</label>
+      <label><input type="checkbox" />Microphones</label>
+    </div>
+    <div id="drone-items" style="display:none">
+      <label><input type="checkbox" />Drone</label>
+      <label><input type="checkbox" />Batteries</label>
+      <label><input type="checkbox" />SD Cards</label>
+      <label><input type="checkbox" />License</label>
+    </div>
+    <div id="walkthrough-items" style="display:none">
+      <label><input type="checkbox" />3D Camera</label>
+      <label><input type="checkbox" />Tripod</label>
+      <label><input type="checkbox" />Spare Batteries for 3D Camera</label>
+      <label><input type="checkbox" />Remote Powerbank</label>
+    </div>
+    <div id="luxury-items" style="display:none">
+      <label><input type="checkbox" />Prime Lenses</label>
+      <label><input type="checkbox" />CPL/Filters</label>
+      <label><input type="checkbox" />Portable LED</label>
+    </div>
   </div>
 
   <div class="section" id="pre-flight">
@@ -102,11 +132,13 @@
     <label><input type="checkbox" />Check RTH altitude</label>
     <label><input type="checkbox" />Capture cinematic paths and stills</label>
     <label><input type="checkbox" />Monitor battery and safety</label>
-    <label><input type="checkbox" />Land safely and review media</label>
+    <label><input type="checkbox" />Land safely</label>
   </div>
 
   <div class="section" id="post-flight">
     <h2>Post-Flight</h2>
+    <label><input type="checkbox" />Inspect drone for wear/damage</label>
+    <label><input type="checkbox" />Review media</label>
     <label><input type="checkbox" />Swap batteries</label>
     <label><input type="checkbox" />Use fire-safe lipo bags</label>
     <label><input type="checkbox" />Protect gear from heat/sun</label>
@@ -116,7 +148,6 @@
 
   <div class="section">
     <h2>End of Day</h2>
-    <label><input type="checkbox" />Inspect drone for wear/damage</label>
     <label><input type="checkbox" />Transfer and back up files</label>
     <label><input type="checkbox" />Charge all batteries</label>
     <label><input type="checkbox" />Clean and store all gear</label>
@@ -179,6 +210,11 @@
       if (confirm("Are you sure you want to reset the entire checklist?")) {
         resetChecklist();
       }
+    }
+
+    function toggleItems(group) {
+      const element = document.getElementById(`${group}-items`);
+      element.style.display = element.style.display === 'none' ? 'block' : 'none';
     }
 
     checkboxes.forEach(cb => cb.addEventListener('change', checkCompletion));
